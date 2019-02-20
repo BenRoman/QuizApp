@@ -1,0 +1,111 @@
+﻿@model IEnumerable<QuizApp.ViewModel.Managing.QuestionViewModel>
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+}
+
+<h2>Questions</h2>
+
+<p>
+    @Html.ActionLink("Create New Question", "CreateQuestion", "Apilike", new { testGuid = ViewBag.guid }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Instance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </th>
+        <th>
+            Answers
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsValid)
+            </td>
+            <td>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Instance
+                        </th>
+                        <th>
+                            IsCorrect
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item2 in item.Answers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item2.Instance)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item2.IsCorrect)
+                            </td>
+                            <td>
+                                <a onclick="Deleter('@item2.Guid')">Delete</a>
+                                @*@Html.ActionLink("Delete", "RemoveAnswer", "Apilike" ,  new { answerGuid = item.Guid } , null )*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </td>
+            <td>
+                @Html.ActionLink("Add answer", "CreateAnswer", new { questionGuid = item.Guid }) |
+                <a onclick="DeleterQuestion('@ViewBag.guid' , '@item.Guid')">Delete question</a> |
+                @Html.ActionLink("Edit", "UpdateQuestion", new { Instance = item.Instance , Hint = item.Hint , Guid = item.Guid}) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+    function Deleter(param) {
+        $.post("/Apilike/RemoveAnswer", { answerGuid: param });
+        window.location.reload();
+        alert("delete success");
+
+        @*var link = '@Url.Action("RemoveAnswer" , "Apilike" , new { answerGuid = "?" } )';
+        link = link.replace("?", param);
+
+        $.ajax({
+            type: 'POST',
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(param),
+            success: function(result) {
+                alert(result);
+            }
+        });*@
+    }
+    function DeleterQuestion(param, param2) {
+        $.post("/Apilike/RemoveQuestion", { testGuid: param, questionGuid: param2 });
+        window.location.reload();
+        alert("delete success");
+    }
+
+</script>
+

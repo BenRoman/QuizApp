@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QuizApp.ViewModel.PassingQuiz.QuestionPassingViewModel>
+
+@{
+    ViewBag.Title = "GetInfoAndStartTest";
+}
+
+<h2>GetInfoAndStartTest</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Instance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Multiple)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectedOne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guid)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Multiple)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Answered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SelectedOne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guid)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Solve", "Delete", new { /* id=item.PrimaryKey */ })
+                
+            </td>
+            
+        </tr>
+    }
+
+    @*@Html.Partial("Partial" , new string[] { item.Hint , item.Instance })*@
+
+</table>
+<div>
+    <div id="Question">Choose</div>
+</div>
+
+<script>
+    window.onload = function () {
+        $('#clicker').on('click', function (event) {
+            alert("FDGDFG");
+            console.log(event)
+        })
+    }
+
+</script>

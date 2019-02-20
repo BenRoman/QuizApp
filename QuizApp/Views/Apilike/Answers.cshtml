@@ -1,0 +1,57 @@
+﻿@*@*@*@*@model List<QuizApp.ViewModel.Managing.AnswerViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Instance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].IsCorrect)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCorrect)
+            </td>
+            <td>
+                <a value="item.Guid" id="deleter" onclick="Deleter('@item.Guid')">Delete</a>
+                @Html.ActionLink("Delete", "RemoveAnswer", "Apilike" ,  new { answerGuid = item.Guid } , null )
+            @*</td>
+        </tr>
+    }
+
+</table>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    
+    function Deleter(param) {
+        $.post("/Apilike/RemoveAnswer", { answerGuid: param });
+        alert("refresh page ");
+
+        @*var link = '@Url.Action("RemoveAnswer" , "Apilike" , new { answerGuid = "?" } )';
+        link = link.replace("?", param);
+
+        $.ajax({
+            type: 'POST',
+            url: link,
+            contentType: 'application/json; charset=utf-8', 
+            data: JSON.stringify(param),    
+            success: function(result) {
+                alert(result);
+            }
+        });
+
+        
+    }
+    
+</script>
+  *@

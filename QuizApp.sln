@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp", "QuizApp\QuizApp.csproj", "{A5514E5E-AC36-4EB9-805F-390267A20E26}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605} = {1D3F53A9-43CC-467E-983C-FB0130F5C605}
+		{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC} = {F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605} = {1D3F53A9-43CC-467E-983C-FB0130F5C605}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1D3F53A9-43CC-467E-983C-FB0130F5C605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelClasses", "ModelClasses\ModelClasses.csproj", "{D0E43A67-E2AB-402F-8C52-C23B1B87DF30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Tests", "QuizApp.Tests\QuizApp.Tests.csproj", "{3025F2CD-74AB-4D18-A9C1-79DC4FCF4293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5514E5E-AC36-4EB9-805F-390267A20E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5514E5E-AC36-4EB9-805F-390267A20E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5514E5E-AC36-4EB9-805F-390267A20E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5514E5E-AC36-4EB9-805F-390267A20E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A3C9F2-40A3-40AB-A13C-97BD1EAECFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D3F53A9-43CC-467E-983C-FB0130F5C605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E43A67-E2AB-402F-8C52-C23B1B87DF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E43A67-E2AB-402F-8C52-C23B1B87DF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E43A67-E2AB-402F-8C52-C23B1B87DF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E43A67-E2AB-402F-8C52-C23B1B87DF30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3025F2CD-74AB-4D18-A9C1-79DC4FCF4293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3025F2CD-74AB-4D18-A9C1-79DC4FCF4293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3025F2CD-74AB-4D18-A9C1-79DC4FCF4293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3025F2CD-74AB-4D18-A9C1-79DC4FCF4293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

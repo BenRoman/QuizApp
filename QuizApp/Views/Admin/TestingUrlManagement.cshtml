@@ -1,0 +1,80 @@
+﻿@model IEnumerable<QuizApp.ViewModel.Managing.TestingUrlViewModel>
+
+@{
+    ViewBag.Title = "TestingUrlManagement";
+}
+
+<h2>TestingUrlManagement</h2>
+
+<p>
+    @Html.ActionLink("Create New Testingurl", "CreateTestingUrl" , "Apilike")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlInstance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestGuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interviewee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRuns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowedStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowedEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlInstance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestGuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interviewee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRuns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllowedStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllowedEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsValid)
+        </td>
+        <td>
+            @Html.ActionLink("Delete testingUrl", "RemoveTestingUrl" , "Apilike", new { testingUrlGuid  = item.Guid } , null) |
+            @Html.ActionLink("GO", "Quiz", "Quiz", new { guid = item.Guid }, null)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<QuizApp.ViewModel.Managing.TestViewModel>
+
+@{
+                /**/
+
+                ViewBag.Title = "TestManagement";
+}
+
+<h2>TestManagement</h2>
+
+<p>
+    @Html.ActionLink("Create New Test", "CreateTest", "Apilike")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestTimeLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionTimeLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </th>
+        <th>
+            Question amount
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TestTimeLimit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.QuestionTimeLimit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Guid)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsValid)
+    </td>
+    <td>
+        @item.Questions.Count
+    </td>
+    <td>
+        @Html.ActionLink("Edit test" , "Edit" , "Apilike" , new { testGuid  = item.Guid } , null) |
+        <a onclick="Deleter('@item.Guid')">Delete Test</a>
+        @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+        @*@Html.ActionLink("Delete Test", "RemoveTest", "Apilike", new { testGuid = item.Guid }, null)*@
+
+    </td>
+</tr>
+}
+
+</table>
+<script>
+
+    function Deleter(param) {
+        $.post("/Apilike/RemoveTest", { testGuid: param });
+        window.location.reload();
+        alert("delete success");
+    }
+
+</script>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<QuizApp.ViewModel.Managing.TestingUrViewModel>
+
+@{
+    ViewBag.Title = "ResultManagement";
+}
+
+<h2>ResultManagement</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingStartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingEndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionTried)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalQuestions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interviewee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestGuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestingStartDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestingEndDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionTried)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalQuestions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsValid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interviewee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestGuid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete result", "RemoveTestingResult", "Apilike", new { testingResultGuid = item.Guid } , null)
+        </td>
+    </tr>
+}
+
+</table>

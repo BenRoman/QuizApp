@@ -1,0 +1,195 @@
+﻿@model QuizApp.ViewModel.PassingQuiz.TestPassingViewModel
+
+@{
+    ViewBag.Title = "QuizDetails";
+}
+<div>Time to the end <span id="time"></span></div>
+@using (Html.BeginForm("FinishTest", "Quiz" ))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" name="TestingGuid" value="@ViewBag.guid" />
+                @Html.ValidationMessageFor(model => model.TestingGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" name="Interviewee" value="@ViewBag.inter" />
+                @Html.ValidationMessageFor(model => model.Interviewee, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" name="TestingStartDateTime" value="@DateTime.Now" />
+                @Html.ValidationMessageFor(model => model.TestingStartDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input id="Deadline" type="hidden" name="TestingEndDateTime" />
+                @Html.ValidationMessageFor(model => model.TestingEndDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           @* @Html.LabelFor(model => model.QuestionTried, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @*<div class="col-md-10">
+                @Html.EditorFor(model => model.QuestionTried, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuestionTried, "", new { @class = "text-danger" })
+            </div>*@
+        </div>
+        <div class="form-group">
+            <div id="QuestionList" class="col-md-10">
+
+            </div>
+        </div>
+        <div id="QuestionBlock" class="form-group"></div>
+        <div class="form-group">
+             @*   @Html.LabelFor(model => model.Questions, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    <input type="hidden" id="QuestionsInput" name="qwerty" value="" />
+                </div>
+            </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input id="AttemptGuid" type="hidden" name="AttemptGuid" value="" />
+                @Html.ValidationMessageFor(model => model.AttemptGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input onclick="end()" id="sim" type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+
+    var dictionary = [];
+
+    window.onload = function () {
+        $.getJSON('@Url.Action("GetInfoAndStartTest")', {
+            testingUrlGuid: '@ViewBag.guid'
+                    })
+            .done(function (data) {
+                $('#AttemptGuid').val(data.AttemptGuid);
+                //startTimer(data.TestTimeLimit.Seconds, document.querySelector('#time'));
+                $.each(data.Questions, function (i, que) {
+                    var link = $('<a />', { value: que.Guid }).html(i+"  ");
+                    link.on('click', function () {
+                        QuestionGenerator(que);
+                    });
+                    $('#QuestionList').append(link);
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Request Failed: " + err);
+            });
+    };
+    function DictFiller() {
+        var QuGuid = document.getElementById("QuestionBlock");
+        if (QuGuid.firstChild) {
+            var keyGuid = QuGuid.firstChild.getAttribute("value");
+            var answers = [];
+            //answers.push(keyGuid);
+            QuGuid.firstChild.removeChild(QuGuid.firstChild.firstChild)
+            while (QuGuid.firstChild.firstChild) {
+                if (QuGuid.firstChild.firstChild.firstChild.checked)
+                    answers.push(QuGuid.firstChild.firstChild.firstChild.getAttribute("value"));
+                QuGuid.firstChild.removeChild(QuGuid.firstChild.firstChild)
+            }
+            var addOrNo = true;
+            $.each(dictionary, function (i, tmp) {
+                //console.log(i , "___" , tmp[0]);
+                if (tmp[0] == keyGuid) {
+                    alert("was");
+                    dictionary[i] = { QuestionGuid: keyGuid, AnswersSelected : answers }
+                    addOrNo = false;
+                }
+            });
+            if (addOrNo)
+                dictionary.push({
+                    QuestionGuid: keyGuid,
+                    AnswersSelected: answers
+                })
+            QuGuid.removeChild(QuGuid.firstChild);
+        }
+    }
+
+
+    function QuestionGenerator(param) {
+        DictFiller();
+        var block = $('<div />', { value: param.Guid }).html(param.Instance);
+        $.each(param.Answers, function (i, answ) {
+            var blocktmp = $('<div />');
+            var chkbox = $('<input />', { type: 'checkbox', value: answ.Guid })
+            var lbl = $('<h5 />').html(answ.Instance);
+            blocktmp.append(chkbox , lbl);
+            block.append(blocktmp);
+        });
+        console.log(dictionary);
+        $('#QuestionBlock').append(block);
+    }
+    function end() {
+        DictFiller();
+        $('#QuestionsInput').val(JSON.stringify(dictionary));
+        $('#Deadline').val('@DateTime.Now');
+        var toSend = {
+            "Guid": '0',
+            "Duration" : '0',
+            "Score" : '0',
+            "TestingGuid" : '@ViewBag.guid' , 
+            "Interviewee": '@ViewBag.inter' ,
+            "TestingStartDateTime": '@DateTime.Now',
+            "TestingEndDateTime": '@DateTime.Now',
+            "AttemptGuid": $('#AttemptGuid').val(),
+            "QuestionTried": dictionary.length , 
+            "Questions": dictionary
+        }
+        console.log(toSend);
+        $("form").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                url: "../Quiz/FinishTest",
+                data: { testPassing : toSend }
+            });
+        });
+    }
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (timer < 1)
+                $("#sim").click()
+            else
+                timer--;
+
+        }, 1000);
+    }
+</script>

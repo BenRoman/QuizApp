@@ -1,0 +1,92 @@
+﻿body {
+    padding-top: 80px;
+    padding-bottom: 20px;
+}
+/*
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+@media (min-width: 768px) {
+    .form-inline .form-group {
+        vertical-align: baseline;
+    }
+}
+
+.progress-bar {
+    color: black;
+}
+
+test,
+testing-url,
+question {
+    padding: 2px;
+}
+
+.accordion-test-name {
+    font-weight: bold;
+}
+
+.accordion-span {
+    padding-left: 100px;
+}
+
+.quiz-create-form {
+    max-width: 700px;
+    margin: auto;
+    width: 60%;
+}
+
+.btn-load-questions {
+    margin-bottom: 15px;
+}
+
+.col-md-4 .checkbox {
+    margin-top: 6px;
+}
+
+.has-bottom-margin {
+    margin-bottom: 10px;
+}
+
+
+.testing-url-interviewee,
+.testing-url-date {
+    position: absolute;
+}
+
+.testing-url-interviewee {
+    left: 42%;
+}
+
+.testing-url-date {
+    left: 60%;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    padding: 0;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.progress {
+    margin-bottom: 0;
+}
+
+.has-padding {
+    padding: 10px;
+}
