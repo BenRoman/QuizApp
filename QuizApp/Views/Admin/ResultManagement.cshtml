@@ -81,9 +81,7 @@
             @Html.DisplayFor(modelItem => item.TestName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete result", "RemoveTestingResult", "Apilike", new { testingResultGuid = item.Guid } , null)
+            @Html.ActionLink("Delete", "RemoveTestingResult", "Apilike", new { testingResultGuid = item.Guid } , null)
         </td>
     </tr>
 }

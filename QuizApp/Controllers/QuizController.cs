@@ -42,15 +42,9 @@ namespace QuizApp.Controllers
             ViewBag.guid = testUrl.Guid;
             return View("QuizDetails");
         }
-        [HttpGet]
-        public ActionResult TestForm(string TestingGuid)
-        {
-            return View();
-        }
 
         [HttpGet]
         public JsonResult GetInfoAndStartTest(string testingUrlGuid)
-        //public ActionResult GetInfoAndStartTest(string testingUrlGuid)
         {
             var domainTest = _getInfoService.GetTestByTestingUrlGuid(testingUrlGuid);
 
@@ -70,30 +64,14 @@ namespace QuizApp.Controllers
             };
 
             _advancedLogicService.StartQuiz(_getInfoService.GetTestingUrlByGuid(testingUrlGuid), attepmtGuid);
-           // return View(questionViewModelList);
             return Json(test, JsonRequestBehavior.AllowGet);
         }
         
-
         [HttpPost]
-        public ActionResult FinishTest(TestPassingViewModel testPassing , object qwerty)
+        public void FinishTest(TestPassingViewModel testPassing )
         {
-
-            //List<ChoicePassingViewModel> que = new List<ChoicePassingViewModel>();
-            //foreach (var item in qwerty as IEnumerable<IEnumerable<string>>) {
-            //    List<string> tmp = new List<string>();
-            //    for (int i = 1; i < item.Count(); i++)
-            //    {
-            //        tmp.Add(item.ElementAt(i));
-            //    }
-            //    que.Add(new ChoicePassingViewModel() { QuestionGuid = item.ElementAt(0), AnswersSelected = tmp });
-            //}
-            //testPassing.Questions = que;
-            //testPassing.QuestionTried = que.Count;
             var testPassingMapped = _advancedMapper.MapTestPassingViewModel(testPassing);
             _advancedLogicService.FinishQuiz(testPassingMapped);
-            return RedirectToAction("TestingUrlManagement" , "Admin");
-
         }
     }
 }

@@ -53,7 +53,10 @@ namespace QuizApp.Controllers
             return View(GetAllTestingResults());
         }
 
-       
+       public ActionResult tmp()
+        {
+            return View();
+        }
 
 
         [HttpGet]

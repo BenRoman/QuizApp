@@ -72,9 +72,20 @@
         </td>
         <td>
             @Html.ActionLink("Delete testingUrl", "RemoveTestingUrl" , "Apilike", new { testingUrlGuid  = item.Guid } , null) |
-            @Html.ActionLink("GO", "Quiz", "Quiz", new { guid = item.Guid }, null)
+            @Html.ActionLink("GO", "Quiz", "Quiz", new { guid = item.Guid }, null) |
+            <a onclick="myFunction('@item.Guid')">Copy url</a>
         </td>
     </tr>
+    
 }
-
 </table>
+<input type="text" value="" id="myInput"><h4 style="display:inline-block">:  Testurl copied </h4> 
+
+<script>
+    function myFunction(param) {
+        $('#myInput').val(window.location.href.concat("/", param));
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        document.execCommand("copy");
+    }
+</script>

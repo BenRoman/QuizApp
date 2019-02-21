@@ -5,11 +5,12 @@
 }
 
 <h2>CreateTest</h2>
+<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>TestViewModel</h4>
         <hr />
@@ -32,27 +33,24 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.TestTimeLimit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TestTimeLimit, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TestTimeLimit, "", new { @class = "text-danger" })
+            <div class="col-md-10 input-group bootstrap-timepicker timepicker">
+                <input type="text" class="timepicker2 form-control input-small" name="TestTimeLimit">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-time"></i>
+                </span>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.QuestionTimeLimit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionTimeLimit, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionTimeLimit, "", new { @class = "text-danger" })
+
+            <div class="col-md-10 input-group bootstrap-timepicker timepicker">
+                <input type="text" class="timepicker2 form-control input-small" name="QuestionTimeLimit">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-time"></i>
+                </span>
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Guid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Guid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Guid, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.IsValid, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,3 +73,20 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@section Scripts{
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
+    <script type="text/javascript">
+        $('.timepicker2').timepicker({
+            minuteStep: 1,
+            template: 'modal',
+            appendWidgetTo: 'body',
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: false
+        });
+    </script>
+}

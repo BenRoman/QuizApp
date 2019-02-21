@@ -336,6 +336,9 @@
     <Content Include="Scripts\jasmine\console.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\localProfile.pubxml" />
     <None Include="Properties\PublishProfiles\somee.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -362,20 +365,16 @@
     <Content Include="Views\Admin\ResultManagement.cshtml" />
     <Content Include="Views\Admin\TestingUrlManagement.cshtml" />
     <Content Include="Views\Admin\TestManagement.cshtml" />
-    <Content Include="Views\Quiz\Quiz.cshtml" />
     <Content Include="Views\Quiz\TestingErrorView.cshtml" />
-    <Content Include="Views\Quiz\GetInfoAndStartTestpast.cshtml" />
-    <Content Include="Views\Quiz\GetInfoAndStartTest.cshtml" />
-    <Content Include="Views\Quiz\Partial.cshtml" />
     <Content Include="Views\Apilike\CreateTest.cshtml" />
     <Content Include="Views\Apilike\Edit.cshtml" />
     <Content Include="Views\Apilike\CreateAnswer.cshtml" />
-    <Content Include="Views\Apilike\Answers.cshtml" />
     <Content Include="Views\Apilike\CreateQuestion.cshtml" />
     <Content Include="Views\Apilike\UpdateQuestion.cshtml" />
     <Content Include="Views\Apilike\CreateTestingUrl.cshtml" />
     <Content Include="Views\Quiz\QuizDetails.cshtml" />
-    <Content Include="Views\Quiz\TestForm.cshtml" />
+    <Content Include="Views\Admin\tmp.cshtml" />
+    <Content Include="Views\Quiz\InterNane.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,9 +382,6 @@
     <Folder Include="Scripts\functionality\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
